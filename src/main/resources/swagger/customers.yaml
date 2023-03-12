@@ -1,0 +1,356 @@
+openapi: 3.0.3
+info:
+  description: >
+    API for Customer
+    Cette API permet de :
+      - Create customers
+  version: 1.0.7
+  title: Customer API
+
+  x-logo:
+    url: /redoc/logo.png
+    backgroundColor: "#FFFFFF"
+tags:
+  - name: Customers
+    description: API de gestion des clients
+servers:
+  - url: http://api.market.dz/customer/api/v1
+paths:
+  /customers:
+    post:
+      tags:
+        - apiCustomer
+      operationId: customerCreate
+      summary: create customer
+      description: "Create a customer"
+      deprecated: false
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/Customer"
+        required: true
+      responses:
+        "201":
+          description: Success
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: object
+                properties:
+                  customerIdentifier:
+                    description: "identifier of created customer"
+                    type: string
+                    format: uuid
+        "400":
+          description: >
+            Bad Request
+
+            List of supported error codes:
+            - 20: Invalid URL parameter value
+            - 21: Missing body
+            - 22: Invalid body
+            - 23: Missing body field
+            - 24: Invalid body field
+            - 25: Missing header
+            - 26: Invalid header value
+            - 27: Missing query-string parameter
+            - 28: Invalid query-string parameter value
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      tags:
+        - apiCustomer
+      operationId: customerUpdate
+      summary: update customer
+      description: "Update a customer"
+      deprecated: false
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/Customer"
+        required: true
+      responses:
+        "201":
+          description: Success
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: object
+                properties:
+                  customerIdentifier:
+                    description: "identifier of updated customer"
+                    type: string
+                    format: uuid
+        "400":
+          description: >
+            Bad Request
+
+            List of supported error codes:
+            - 20: Invalid URL parameter value
+            - 21: Missing body
+            - 22: Invalid body
+            - 23: Missing body field
+            - 24: Invalid body field
+            - 25: Missing header
+            - 26: Invalid header value
+            - 27: Missing query-string parameter
+            - 28: Invalid query-string parameter value
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    get:
+      tags:
+        - apiCustomer
+      operationId: findUsers
+      summary: find customers
+      description: "find customers"
+      deprecated: false
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json;charset=utf-8:
+              schema:
+                items:
+                  $ref: "#/components/schemas/Customer"
+        "400":
+          description: >
+            Bad Request
+
+            List of supported error codes:
+            - 20: Invalid URL parameter value
+            - 21: Missing body
+            - 22: Invalid body
+            - 23: Missing body field
+            - 24: Invalid body field
+            - 25: Missing header
+            - 26: Invalid header value
+            - 27: Missing query-string parameter
+            - 28: Invalid query-string parameter value
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /customers/{customerUuid}:
+    get:
+      tags:
+        - apiCustomer
+      operationId: findUserByUuid
+      summary: find customer
+      description: "find customer"
+      deprecated: false
+      parameters:
+        - name: customerUuid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Customer"
+        "400":
+          description: >
+            Bad Request
+
+            List of supported error codes:
+            - 20: Invalid URL parameter value
+            - 21: Missing body
+            - 22: Invalid body
+            - 23: Missing body field
+            - 24: Invalid body field
+            - 25: Missing header
+            - 26: Invalid header value
+            - 27: Missing query-string parameter
+            - 28: Invalid query-string parameter value
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      tags:
+        - apiCustomer
+      operationId: deleteUserByUuid
+      summary: delete customer
+      description: "delete customer"
+      deprecated: false
+      parameters:
+        - name: customerUuid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: object
+                properties:
+                  customerIdentifier:
+                    description: "identifier of deleted customer"
+                    type: string
+                    format: uuid
+        "400":
+          description: >
+            Bad Request
+
+            List of supported error codes:
+            - 20: Invalid URL parameter value
+            - 21: Missing body
+            - 22: Invalid body
+            - 23: Missing body field
+            - 24: Invalid body field
+            - 25: Missing header
+            - 26: Invalid header value
+            - 27: Missing query-string parameter
+            - 28: Invalid query-string parameter value
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /customers/search:
+    post:
+      tags:
+        - searchCustomers
+      operationId: searchCustomers
+      summary: search customers
+      description: "search customers"
+      deprecated: false
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/CustomerSearchCriteria"
+        required: false
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/CustomerSearchResponse"
+        "400":
+          description: >
+            Bad Request
+
+            List of supported error codes:
+            - 20: Invalid URL parameter value
+            - 21: Missing body
+            - 22: Invalid body
+            - 23: Missing body field
+            - 24: Invalid body field
+            - 25: Missing header
+            - 26: Invalid header value
+            - 27: Missing query-string parameter
+            - 28: Invalid query-string parameter value
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    Customer:
+      description: Customer object
+      type: object
+      required:
+        - firstName
+        - lastName
+        - mail
+      properties:
+        uuid:
+          description: "uuid"
+          type: string
+          maxLength: 255
+        firstName:
+          description: "first name"
+          type: string
+          maxLength: 50
+        lastName:
+          description: "last name"
+          type: string
+          maxLength: 50
+        birthDate:
+          description: "birth date"
+          type: string
+        gender:
+          $ref: "#/components/schemas/Gender"
+        mail:
+          description: "customer mail"
+          type: string
+          maxLength: 255
+
+    Gender:
+      description: "gender"
+      type: string
+      enum:
+        - MALE
+        - FEMALE
+
+    CustomerSearchResponse:
+      description: 'wrapper de l''opération "Search" contenant la liste des customers d''une page en cours + le nombre total de clients'
+      required:
+        - customers
+        - totalCount
+      type: object
+      properties:
+        customers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Customer'
+        totalCount:
+          description: 'Customers total number'
+          type: integer
+          format: int64
+
+    CustomerSearchCriteria:
+      description: ''
+      type: object
+      properties:
+        gender:
+          $ref: "#/components/schemas/Gender"
+        active:
+          description: 'what ever customer is active or not'
+          type: boolean
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        sort:
+          type: string
+
+    Pagination:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          format: int32
+        page:
+          type: integer
+          format: int32
+
+    Error:
+      required:
+        - code
+        - message
+      type: object
+      properties:
+        code:
+          description: "Error code"
+          type: integer
+          format: int32
+        message:
+          description: "Error description"
+          type: string
+        description:
+          description: "Long description"
+          type: string

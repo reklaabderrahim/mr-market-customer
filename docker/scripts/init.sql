@@ -1,0 +1,7 @@
+CREATE USER marketOwner PASSWORD 'marketOwner';
+CREATE DATABASE customer;
+CREATE DATABASE security;
+CREATE DATABASE product;
+GRANT ALL PRIVILEGES ON DATABASE customer TO marketOwner;
+GRANT ALL PRIVILEGES ON DATABASE security TO marketOwner;
+GRANT ALL PRIVILEGES ON DATABASE product TO marketOwner;
