@@ -7,20 +7,26 @@ spring:
   application:
     name: customer
   datasource:
-    url: jdbc:postgresql://localhost:5432/customer
-    username: customerOwner
-    password: customerOwner
     driver-class-name: org.postgresql.Driver
   jpa:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: customer
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: validate
     show-sql: true
   cloud:
     config:
       enabled: false
+  config:
+    import: optional:secrets.yml
+  flyway:
+    schemas: customer
+    enabled: true
+    locations: classpath:db/migration
 
 springdoc:
   show-actuator: true
@@ -29,7 +35,7 @@ springdoc:
 
 management:
   server:
-    port: 9090
+    port: 9093
   endpoint:
     health:
       show-details: always
@@ -52,8 +58,9 @@ logging:
     name: "/home/rekla/dev/logging/log"
   level:
     org:
-      springframework: info
-      hibernate: debug
+      springframework:
+        security: trace
+      hibernate: info
     fr:
       mr_market:
         mr_customer: debug
