@@ -35,7 +35,7 @@ springdoc:
 
 management:
   server:
-    port: 9093
+    port: 9091
   endpoint:
     health:
       show-details: always
