@@ -1,16 +1,16 @@
 version: "3.7"
 services:
   pgadmin:
-    image: thajeztah/pgadmin4
+    image: dpage/pgadmin4
     container_name: PGADMIN4_LOCAL
     restart: always
     ports:
-      - "5050:5050"
+      - "5050:80"
     volumes:
       - "pgadmin:/var/lib/pgadmin"
     environment:
       PGADMIN_DEFAULT_EMAIL: reklaabderrahim@hotmail.com
-      PGADMIN_DEFAULT_PASSWORD: marketOwner
+      PGADMIN_DEFAULT_PASSWORD: market_owner
   db:
     build:
       context: .
@@ -21,8 +21,8 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USER: marketOwner
-      POSTGRES_PASSWORD: marketOwner
+      POSTGRES_USER: market_owner
+      POSTGRES_PASSWORD: market_owner
       POSTGRES_DB: postgres
 
 volumes:
