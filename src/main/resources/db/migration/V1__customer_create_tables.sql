@@ -61,7 +61,7 @@ CREATE TABLE if not exists collection_item
     create_date     TIMESTAMP               NOT NULL,
     update_date     TIMESTAMP               NULL,
     delete_date     TIMESTAMP               NULL,
-    delete_status   INT                     NULL,
+    delete_status   SMALLINT                NULL,
     is_gift         BOOLEAN DEFAULT FALSE   NOT NULL,
     PRIMARY KEY (id),
     constraint collection_item_uuid_unique UNIQUE (uuid),

@@ -1,7 +1,7 @@
 package fr.mr_market.mr_customer.repository;
 
 import fr.mr_market.mr_customer.model.Customer;
-import org.jetbrains.annotations.NotNull;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

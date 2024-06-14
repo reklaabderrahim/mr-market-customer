@@ -23,7 +23,7 @@ services:
     environment:
       POSTGRES_USER: market_owner
       POSTGRES_PASSWORD: market_owner
-      POSTGRES_DB: postgres
+      POSTGRES_DB: market
 
 volumes:
   dbdata-local:

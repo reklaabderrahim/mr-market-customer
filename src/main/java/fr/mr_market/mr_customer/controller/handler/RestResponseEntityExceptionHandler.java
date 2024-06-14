@@ -3,6 +3,7 @@ package fr.mr_market.mr_customer.controller.handler;
 import com.github.dozermapper.core.converters.ConversionException;
 import fr.mr_market.mr_customer.exception.CustomerNotFoundException;
 import fr.mr_market.mr_market_customer.swagger.model.customer.Error;
+import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import javax.validation.ConstraintViolationException;
 
 @RestControllerAdvice
 @Slf4j
